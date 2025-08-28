@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; }
+        header { background:#333; padding:15px 30px; }
+        nav ul { list-style:none; display:flex; gap:20px; }
+        nav ul li a { color:#fff; text-decoration:none; padding:8px 15px; border-radius:5px; transition:0.3s; }
+        nav ul li a.active { background:#007BFF; }
+        nav ul li a:hover { background:#555; }
+        .container { max-width:900px; margin:40px auto; padding:20px; background:#fff; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align:center; margin-bottom:20px; color:#333; }
+        .contact-info { display:flex; flex-direction:column; gap:15px; font-size:18px; margin-bottom:30px; }
+        .contact-info div span { font-weight:bold; color:#007BFF; }
+        .images { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:30px; }
+        .images img { width: 300px; max-width:100%; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+        /* Contact Form */
+        form { display:flex; flex-direction:column; gap:15px; }
+        form input, form textarea { padding:12px; border-radius:5px; border:1px solid #ccc; font-size:16px; width:100%; }
+        form textarea { resize: vertical; min-height:120px; }
+        form button { background:#007BFF; color:#fff; padding:12px; border:none; border-radius:5px; font-size:16px; cursor:pointer; transition:0.3s; }
+        form button:hover { background:#0056b3; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/services/">Services</a></li>
+                <li><a href="/contact/" class="active">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Contact Us</h1>
+
+        <div class="contact-info">
+            <div><span>Address:</span> 123 Maple Street, Suite 100, Toronto, ON</div>
+            <div><span>Phone:</span> +1 (416) 555-6789</div>
+            <div><span>Email:</span> support@dealership.com</div>
+            <div><span>Hours:</span> Mon-Fri: 9am - 6pm</div>
+            <div><span>Social:</span> <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">LinkedIn</a></div>
+        </div>
+
+        <div class="images">
+            <img src="images/dealership.jpg" alt="Dealership building">
+            <img src="images/customer_service.jpg" alt="Customer service team">
+        </div>
+
+        <!-- Contact Form -->
+        <form action="#" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>
