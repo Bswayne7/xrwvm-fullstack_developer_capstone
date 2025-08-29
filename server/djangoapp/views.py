@@ -1,26 +1,59 @@
-# Uncomment the required imports before adding the code
-
-# from django.shortcuts import render
-# from django.http import HttpResponseRedirect, HttpResponse
-# from django.contrib.auth.models import User
-# from django.shortcuts import get_object_or_404, render, redirect
-# from django.contrib.auth import logout
-# from django.contrib import messages
-# from datetime import datetime
-
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
-# from .populate import initiate
+
+from django.contrib.auth import logout
+from django.http import JsonResponse
 
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+@csrf_exempt
+def registration(request):
+    if request.method == "POST":
+        # Load JSON data from the request body
+        data = json.loads(request.body)
+        username = data['userName']
+        password = data['password']
+        first_name = data['firstName']
+        last_name = data['lastName']
+        email = data['email']
+
+        username_exist = False
+        try:
+            User.objects.get(username=username)
+            username_exist = True
+        except User.DoesNotExist:
+            logger.debug("{} is a new user".format(username))
+
+        if not username_exist:
+            # Create user in auth_user table
+            user = User.objects.create_user(
+                username=username,
+                first_name=first_name,
+                last_name=last_name,
+                password=password,
+                email=email
+            )
+            # Log the user in
+            login(request, user)
+            data = {"userName": username, "status": "Authenticated"}
+            return JsonResponse(data)
+        else:
+            data = {"userName": username, "error": "Already Registered"}
+            return JsonResponse(data)
+    else:
+        return JsonResponse({"error": "Invalid request"}, status=400)
 
 # Create your views here.
+# Logout view
+def logout_user(request):
+    logout(request)  # Terminate user session
+    data = {"userName": ""}  # Return empty username
+    return JsonResponse(data)
 
 # Create a `login_request` view to handle sign in request
 @csrf_exempt
