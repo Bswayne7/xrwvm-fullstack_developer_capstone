@@ -9,6 +9,8 @@ from django.http import JsonResponse
 from django.http import JsonResponse
 import json
 from .restapis import get_request, analyze_review_sentiments, post_review
+from django.http import JsonResponse
+from .models import Dealer
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
